@@ -7,11 +7,21 @@ import java.util.NoSuchElementException;
 
 public class ImmutableQueueTest {
 
+
+    @Test
+    public void Given_Queue_Empty_When_IsEmpty_Then_Exception() {
+
+        Queue<Integer> queue = new ImmutableQueue<>();
+
+        Assert.assertTrue(queue.isEmpty());
+
+    }
+
     @Test
     public void Given_Queue_Empty_When_Head_Then_Exception() {
 
         Queue<Integer> queue = new ImmutableQueue<>();
-        
+
         try {
             queue.head();
         } catch (Exception e) {
