@@ -13,7 +13,7 @@ public class ImmutableQueueTest {
 
         Queue<Integer> queue = makeQueue();
 
-        Assert.assertTrue(queue.isEmpty());
+        checkEmpty(queue);
 
     }
 
@@ -67,7 +67,6 @@ public class ImmutableQueueTest {
     }
 
 
-
     @Test
     public void Given_Queue_Empty_When_Dequeue_Then_Throw_Exception() {
 
@@ -79,6 +78,23 @@ public class ImmutableQueueTest {
             Assert.assertTrue(e instanceof NoSuchElementException);
         }
 
+    }
+
+
+    @Test
+    public void Given_Queue_1_When_Dequeue_Then_Empty() {
+
+        Queue<Integer> before = makeQueue(1);
+
+        Queue<Integer> afterDequeue = before.deQueue();
+
+        checkEmpty(afterDequeue);
+
+
+    }
+
+    private void checkEmpty(Queue<Integer> afterDequeue) {
+        Assert.assertTrue(afterDequeue.isEmpty());
     }
 
 
