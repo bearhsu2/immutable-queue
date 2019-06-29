@@ -25,7 +25,7 @@ public class ImmutableQueueTest {
         try {
             queue.head();
         } catch (Exception e) {
-            Assert.assertTrue(e instanceof NoSuchElementException);
+            checkExceptionType(e);
         }
 
     }
@@ -40,11 +40,6 @@ public class ImmutableQueueTest {
 
         checkInstanceAndHead(before, afterEnqueue, 1);
 
-    }
-
-    private void checkInstanceAndHead(Queue<Integer> before, Queue<Integer> after, int expectedHead) {
-        Assert.assertNotEquals(before, after);
-        Assert.assertEquals(Integer.valueOf(expectedHead), after.head());
     }
 
 
@@ -79,9 +74,13 @@ public class ImmutableQueueTest {
         try {
             before.deQueue();
         } catch (Exception e) {
-            Assert.assertTrue(e instanceof NoSuchElementException);
+            checkExceptionType(e);
         }
 
+    }
+
+    private void checkExceptionType(Exception e) {
+        Assert.assertTrue(e instanceof NoSuchElementException);
     }
 
 
@@ -112,6 +111,13 @@ public class ImmutableQueueTest {
 
         return queue;
     }
+
+
+    private void checkInstanceAndHead(Queue<Integer> before, Queue<Integer> after, int expectedHead) {
+        Assert.assertNotEquals(before, after);
+        Assert.assertEquals(Integer.valueOf(expectedHead), after.head());
+    }
+
 
 
 }
