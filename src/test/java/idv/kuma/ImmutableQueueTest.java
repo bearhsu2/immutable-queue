@@ -37,9 +37,14 @@ public class ImmutableQueueTest {
         Queue<Integer> before = makeQueue();
 
         Queue<Integer> afterEnqueue = before.enQueue(1);
-        Assert.assertNotEquals(before, afterEnqueue);
-        Assert.assertEquals(Integer.valueOf(1), afterEnqueue.head());
 
+        checkInstanceAndHead(before, afterEnqueue, 1);
+
+    }
+
+    private void checkInstanceAndHead(Queue<Integer> before, Queue<Integer> after, int expectedHead) {
+        Assert.assertNotEquals(before, after);
+        Assert.assertEquals(Integer.valueOf(expectedHead), after.head());
     }
 
 
@@ -49,8 +54,8 @@ public class ImmutableQueueTest {
         Queue<Integer> before = makeQueue(1);
 
         Queue<Integer> afterEnqueue = before.enQueue(2);
-        Assert.assertNotEquals(before, afterEnqueue);
-        Assert.assertEquals(Integer.valueOf(1), afterEnqueue.head());
+
+        checkInstanceAndHead(before, afterEnqueue, 1);
 
     }
 
@@ -61,8 +66,7 @@ public class ImmutableQueueTest {
         Queue<Integer> before = makeQueue(1, 2);
 
         Queue<Integer> afterEnqueue = before.enQueue(3);
-        Assert.assertNotEquals(before, afterEnqueue);
-        Assert.assertEquals(Integer.valueOf(1), afterEnqueue.head());
+        checkInstanceAndHead(before, afterEnqueue, 1);
 
     }
 
