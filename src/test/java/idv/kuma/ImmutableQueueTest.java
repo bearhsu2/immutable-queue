@@ -40,10 +40,31 @@ public class ImmutableQueueTest {
         Assert.assertNotEquals(before, afterEnqueue);
         Assert.assertEquals(Integer.valueOf(1), afterEnqueue.head());
 
+    }
+
+
+    @Test
+    public void Given_Queue_1_When_Enqueue_2_Then_Return_New_Queue_And_Head_1() {
+
+        Queue<Integer> before = makeQueue(1);
+
+        Queue<Integer> afterEnqueue = before.enQueue(2);
+        Assert.assertNotEquals(before, afterEnqueue);
+        Assert.assertEquals(Integer.valueOf(1), afterEnqueue.head());
 
     }
 
 
+    @Test
+    public void Given_Queue_1_2_When_Enqueue_3_Then_Return_New_Queue_And_Head_1() {
+
+        Queue<Integer> before = makeQueue(1, 2);
+
+        Queue<Integer> afterEnqueue = before.enQueue(3);
+        Assert.assertNotEquals(before, afterEnqueue);
+        Assert.assertEquals(Integer.valueOf(1), afterEnqueue.head());
+
+    }
 
 
     private Queue<Integer> makeQueue(int... elements) {
@@ -56,8 +77,6 @@ public class ImmutableQueueTest {
 
         return queue;
     }
-
-
 
 
 }
