@@ -79,10 +79,6 @@ public class ImmutableQueueTest {
 
     }
 
-    private void checkExceptionType(Exception e) {
-        Assert.assertTrue(e instanceof NoSuchElementException);
-    }
-
 
     @Test
     public void Given_Queue_1_When_Dequeue_Then_Empty() {
@@ -91,9 +87,40 @@ public class ImmutableQueueTest {
 
         Queue<Integer> afterDequeue = before.deQueue();
 
+        checkInstance(before, afterDequeue);
+
         checkEmpty(afterDequeue);
 
+    }
 
+
+    @Test
+    public void Given_Queue_1_2_When_Dequeue_Then_New_Queue_And_Head_1() {
+
+        Queue<Integer> before = makeQueue(1, 2);
+
+        Queue<Integer> afterDequeue = before.deQueue();
+
+        checkInstanceAndHead(before, afterDequeue, 2);
+    }
+
+    @Test
+    public void Given_Queue_1_2_3_When_Dequeue_Twice_Then_New_Queues_And_Head_2_And_3() {
+
+        Queue<Integer> before = makeQueue(1, 2, 3);
+
+        Queue<Integer> afterDequeueOnce = before.deQueue();
+
+        checkInstanceAndHead(before, afterDequeueOnce, 2);
+
+        Queue<Integer> afterDequeueTwice = afterDequeueOnce.deQueue();
+
+        checkInstanceAndHead(afterDequeueOnce, afterDequeueTwice, 3);
+
+    }
+
+    private void checkExceptionType(Exception e) {
+        Assert.assertTrue(e instanceof NoSuchElementException);
     }
 
     private void checkEmpty(Queue<Integer> afterDequeue) {
@@ -118,6 +145,10 @@ public class ImmutableQueueTest {
         Assert.assertEquals(Integer.valueOf(expectedHead), after.head());
     }
 
+
+    private void checkInstance(Queue<Integer> before, Queue<Integer> afterDequeue) {
+        Assert.assertNotEquals(before, afterDequeue);
+    }
 
 
 }
