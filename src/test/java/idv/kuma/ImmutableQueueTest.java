@@ -67,6 +67,21 @@ public class ImmutableQueueTest {
     }
 
 
+
+    @Test
+    public void Given_Queue_Empty_When_Dequeue_Then_Throw_Exception() {
+
+        Queue<Integer> before = makeQueue();
+
+        try {
+            before.deQueue();
+        } catch (Exception e) {
+            Assert.assertTrue(e instanceof NoSuchElementException);
+        }
+
+    }
+
+
     private Queue<Integer> makeQueue(int... elements) {
 
         Queue<Integer> queue = new ImmutableQueue<>();
