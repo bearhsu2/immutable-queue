@@ -12,8 +12,9 @@ public class ImmutableQueue<T> implements Queue<T> {
         this.storage = new ArrayList<>();
     }
 
+
     private ImmutableQueue(List<T> storage) {
-        this.storage = storage;
+        this.storage = new ArrayList<>(storage);
     }
 
 
