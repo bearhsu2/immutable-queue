@@ -28,4 +28,17 @@ public class ImmutableQueueTest {
     }
 
 
+    @Test
+    public void Given_Queue_1_2_When_Enqueue_3_Then_Return_New_Queue_And_Head_3() {
+
+        Queue<Integer> before = new ImmutableQueue<>();
+        before.enQueue(1);
+        before.enQueue(2);
+
+        Queue<Integer> after = before.enQueue(3);
+        Assert.assertNotEquals(before, after);
+        Assert.assertEquals(Integer.valueOf(3), after.head());
+    }
+
+
 }
